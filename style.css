@@ -1,0 +1,244 @@
+body {
+    background-color: #F5F5F5;
+    font: 90% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.header {
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+    color: #EAD7D7;
+    font-size: 15vh;
+    position: relative;
+    display: block;
+}
+
+.mainBox {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0%;
+    /* height: 20vh; */
+    width: 38vw;
+    background-color: #FEFEFE;
+    display: block;
+
+    box-shadow: -0.5vh 1.5vh 2.2vw #D7D7D7;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    height: 9vh;
+    /* display: block; */
+
+    display: flex;
+    align-items: center;
+    border-bottom: 0.35vh solid #E6E6E6;
+    border-top: 0.4vh solid #F1F1F1;
+}
+
+input:placeholder-shown {
+    color: #E6E6E6;
+    
+    opacity: 0.2;
+    font: 90% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 3vh;
+    font-style: italic;
+
+    caret-color: black;
+}
+
+.fa-angle-down {
+    /* border-left: 2.5vh solid #F1F1F1;
+    border-right: 2.5vh solid #F1F1F1; */
+    margin-left: 2.5vh;
+    margin-right: 2.5vh;
+    opacity: 0.2;
+}
+
+.inputBox {
+    background-color: transparent;
+    width: 85%;
+    height: 90%;
+    position: relative;
+    font-size: 3vh;
+    display: inline-block;
+
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+.inputBox::placeholder {
+  font-size: 3vh;
+}
+
+.list_element {
+    position: relative;
+    width: 100%;
+    height: 9vh;
+    display: block;
+
+    display: flex;
+    align-items: center;
+    border-bottom: 0.23vh solid #E6E6E6;
+}
+
+
+/* Checkbox style */
+.round {
+    position: relative;
+    display: inline-block;
+    margin-left: 2vh;
+    margin-top: 2vh;
+    margin-bottom: 2.5vh;
+  }
+  
+  .round label {
+    background-color: #FEFEFE;
+    border: 0.13262vh solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 3.7135vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 3.7135vh;
+  }
+  
+  .round label:after {
+    border: 0.265251vh solid #66bb6a;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 0.79575vh;
+    left:  0.92838vh;
+    opacity: 0;
+    position: absolute;
+    top: 1.061vh;
+    transform: rotate(-45deg);
+    width: 1.59151vh;
+  }
+  
+  .round input[type="checkbox"] {
+    visibility: hidden;
+  }
+  
+  .round input[type="checkbox"]:checked + label {
+    background-color: #fff;
+    border-color: #66bb6a;
+  }
+  
+  .round input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+  }
+
+  /* .round input[type="checkbox"]:checked + .taskDone {
+    text-decoration: line-through;
+  } */
+
+.element_of_list {
+    position: relative;
+    display: inline-block;
+    margin-left: 3.5vh;
+    margin-top: 3vh;
+    margin-bottom: 2.5vh;
+    font: 90% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 3vh;
+
+    color: #4D4D4D;
+}
+
+.element_of_list_done {
+  position: relative;
+  display: inline-block;
+  margin-left: 3.5vh;
+  margin-top: 3vh;
+  margin-bottom: 2.5vh;
+  font: 90% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 3vh;
+
+  color: #D9D9D9;
+  text-decoration: line-through;
+}
+
+.fa-times {
+  position: absolute;
+  
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
+  right: 2.5%;
+  
+  opacity: 0.2;
+}
+
+.box_footer {
+  position: relative;
+  width: 100%;
+  height: 5vh;
+
+  display: flex;
+  align-items: center;
+  border-bottom: 0.23vh solid #E6E6E6;
+}
+
+.items_left {
+  position: absolute;
+  
+  left: 2.5%;
+  color: #777777;
+  font-size: 2vh;
+}
+
+.filters {
+  margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	left: 30%;
+  right: 30%;
+	color: #777777;
+
+  display: inline block;
+  font-size: 2vh;
+}
+
+.filters li {
+  display: inline;
+}
+
+.filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.filters li a:hover {
+	border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filters li a.selected {
+	border-color: rgba(175, 47, 47, 0.2);
+}
+
+.clear_completed {
+	position: absolute;
+	right: 2.5%;
+  color: #777777;
+  background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+  font-size: 2vh;
+}
+
+.clear_completed:hover {
+	text-decoration: underline;
+}

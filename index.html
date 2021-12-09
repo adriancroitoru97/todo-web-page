@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>todos</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <p class="header">todos</p>
+        
+        <div class="mainBox">
+            <div class="input">
+                <i class="fa fa-angle-down fa-2x"></i>
+                <input class="inputBox" placeholder="What needs to be done?" autofocus>
+            </div>
+
+            <div class="list_element">
+                <div class="round">
+                    <input type="checkbox" unchecked id="checkbox" />
+                    <label for="checkbox"></label>
+                </div>
+
+                <div class="element_of_list">TODO undone</div>
+
+                <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+            </div>
+            
+            <div class="list_element">
+                <div class="round">
+                    <input type="checkbox" checked id="checkbox2" />
+                    <label for="checkbox2"></label>
+                </div>
+
+                <div class="element_of_list_done">TODO done</div>
+
+                <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+            </div>
+
+            <div class="box_footer">
+                <span class="items_left">5 items left</span>
+
+                <ul class="filters">
+                    <li>
+						<a href="#/" class="selected">All</a>
+					</li>
+					<li>
+						<a href="#/active">Active</a>
+					</li>
+					<li>
+						<a href="#/completed">Completed</a>
+					</li>
+                </ul>
+
+                <button class="clear_completed">Clear completed</button>
+            </div>
+        </div>
+
+
+
+        <script src="script.js"></script>
+    </body>
+</html>
