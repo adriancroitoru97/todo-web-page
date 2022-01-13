@@ -85,6 +85,11 @@ input:placeholder-shown {
     border-bottom: 0.23vh solid #E6E6E6;
 }
 
+.x_button {
+    position: absolute;
+    right: 2.5%
+}
+
 
 /* Checkbox style */
 .round {
@@ -164,7 +169,7 @@ input:placeholder-shown {
 }
 
 .fa-times {
-  position: absolute;
+  position: relative;
   
   margin-top: 2.5vh;
   margin-bottom: 2.5vh;
