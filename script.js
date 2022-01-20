@@ -1,29 +1,9 @@
-let todo1 = {
-    id: 1,
-    text: "PRIMUL TODO",
-    checked: true
-}
-
-let todo2 = {
-    id: 2,
-    text: "AL DOILEA TODO",
-    checked: true
-}
-
-let todo3 = {
-    id: 3,
-    text: "AL TREILEA TODO",
-    checked: true
-}
-
-let todo4 = {
-    id: 4,
-    text: "Al patrulea TODO",
-    checked: true
-}
-
 let todos = []
 let elementsContainer = document.getElementById('elementsContainer')
+
+function deleteElement(i) {
+    todos.splice(i , i + 2);
+}
 
 const render = () => {
     // clean elementsContainer
@@ -44,7 +24,11 @@ const render = () => {
         element_of_list.innerHTML = element["text"]
         
         let button = document.createElement('div')
-        button.classList.add('x_button')
+        button.classList.add('xButton')
+        // button.addEventListener('click', deleteElement);
+        button.addEventListener('click', function() {
+            deleteElement(element.id);
+        });
         button.innerHTML = `<i class="fa fa-times fa-2x" aria-hidden="true"></i>`
 
         list_element.appendChild(checkbox)
@@ -54,21 +38,37 @@ const render = () => {
 
         elementsContainer.appendChild(list_element)
     });
+
+    let nrOfItems = document.getElementById("itemsLeft");
+    nrOfItems.innerHTML = todos.length + " items left";
 }
 
 const main = () => {
-    todos.push(todo1)
-    render()
-    todos.push(todo2)
-    render()
-    todos.push(todo3)
-    render()
-    todos.push(todo4)
-    render()
+    document.querySelector(".inputBox").addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            var inputText = document.getElementById("myInput").value
+            if (inputText.length > 0)
+                {
+                    let todo = {
+                        id: todos.length,
+                        text: inputText,
+                        checked: false
+                    }
+    
+                    todos.push(todo);
+                    render();
+    
+                    document.getElementById("myInput").value = "";
+                }
+        }
+    });
 
-
-    // todos.splice(1, 1)
-    // render()
+    var allButtons = document.getElementsByClassName("xButton");
+    console.log(allButtons);
+    for (var i = 0; i < allButtons.length; i++) {
+        allButtons[i].outerHTML.addEventListener('click', render)
+    }
 }
 
 main()
+
