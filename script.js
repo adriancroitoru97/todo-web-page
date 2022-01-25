@@ -14,6 +14,7 @@ function checkElement(element, ind) {
     }
 
     console.log(todos);
+    render();
 }
 
 const render = () => {
@@ -48,11 +49,11 @@ const render = () => {
 
         let element_of_list = document.createElement('div')
         element_of_list.classList.add('element_of_list')
-        // if (element.checked == false) {
+        if (element.checked == false) {
             element_of_list.innerHTML = element["text"];
-        // } else {
-        //     element_of_list.innerHTML = element["text"].strike();
-        // }
+        } else {
+            element_of_list.innerHTML = element["text"].strike();
+        }
         
 
 
@@ -64,10 +65,10 @@ const render = () => {
         button.innerHTML = `<i class="fa fa-times fa-2x" aria-hidden="true"></i>`
 
 
+
         list_element.appendChild(round)
         list_element.appendChild(element_of_list)
         list_element.appendChild(button)
-
 
         elementsContainer.appendChild(list_element)
 
@@ -78,8 +79,21 @@ const render = () => {
         }
     });
 
+
+
+
+    var leftItems = 0;
+    for (var j = 0; j < todos.length; j++) {
+        if (todos[j].checked == false) {
+            leftItems++;
+        }
+    }
     let nrOfItems = document.getElementById("itemsLeft");
-    nrOfItems.innerHTML = todos.length + " items left";
+    if (leftItems == 1) {
+        nrOfItems.innerHTML = leftItems + " item left";
+    } else {
+        nrOfItems.innerHTML = leftItems + " items left";
+    }
 }
 
 const main = () => {
@@ -102,16 +116,11 @@ const main = () => {
         }
     });
 
-    // var allButtons = document.getElementsByClassName("xButton");
-    // for (var i = 0; i < allButtons.length; i++) {
-    //     allButtons[i].outerHTML.addEventListener('click', render);
-    // }
+    // document.querySelector(".fa-angle-down").addEventListener('click', function() {
+    //     alert("DA");
 
-    // var allChecks = document.getElementsByClassName("chck");
-    // console.log(allChecks);
-    // for (var i = 0; i < allChecks.length; i++) {
-    //     allChecks[i].outerHTML.addEventListener('click', render);
-    // }
+    //     if ()
+    // });
 }
 
 main()
