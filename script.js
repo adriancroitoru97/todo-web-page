@@ -73,7 +73,13 @@ const render = () => {
         button.addEventListener('click', function() {
             deleteElement(ind);
         });
-        button.innerHTML = `<i class="fa fa-times fa-2x" aria-hidden="true"></i>`
+        list_element.addEventListener('mouseover', function() {
+            button.style.visibility = 'visible';
+        });
+        list_element.addEventListener('mouseout', function() {
+            button.style.visibility = 'hidden';
+        });
+        button.innerHTML = `<i class="fa fa-times fa-2x" aria-hidden="true"></i>`;
 
 
 

@@ -88,7 +88,8 @@ input:placeholder-shown {
 
 .xButton {
     position: absolute;
-    right: 2.5%
+    right: 2.5%;
+    visibility: hidden;
 }
 
 
