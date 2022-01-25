@@ -193,8 +193,6 @@ const render = () => {
                 todos[i].seenable = true;
             }
 
-            // console.log(todos);
-
             render();
         });
 
@@ -212,8 +210,6 @@ const render = () => {
                 }
             }
 
-            // console.log(todos);
-
             render();
         });
 
@@ -230,8 +226,6 @@ const render = () => {
                     todos[i].seenable = false;
                 }
             }
-
-            // console.log(todos);
 
             render();
         });
