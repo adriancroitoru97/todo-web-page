@@ -29,7 +29,7 @@ function checkElement(element, ind) {
 
 const render = () => {
     // clean elementsContainer
-    elementsContainer.innerHTML =''
+    elementsContainer.innerHTML ='';
 
     todos.forEach((element, ind) => {
         if (element.seenable == true) {
@@ -138,9 +138,16 @@ const render = () => {
                             checked: false,
                             seenable: true
                         }
-        
                         todos.push(todo);
                         render();
+                        
+                        if (document.getElementById("fAll").classList.contains("selected")) {
+                            document.getElementById("fAll").click();
+                        } else if (document.getElementById("fActive").classList.contains("selected")) {
+                            document.getElementById("fActive").click();
+                        } else if (document.getElementById("fCompleted").classList.contains("selected")) {
+                            document.getElementById("fCompleted").click();
+                        }
         
                         document.getElementById("myInput").value = "";
                     }
@@ -232,4 +239,3 @@ const render = () => {
 }
 
 main()
-
