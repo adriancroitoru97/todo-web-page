@@ -105,6 +105,14 @@ const render = () => {
     } else {
         document.getElementsByClassName("clear_completed")[0].style.visibility = 'visible';
     }
+
+    if (todos.length > 0) {
+        document.getElementsByClassName("box_footer")[0].style.display = 'flex';
+        document.getElementsByClassName("fa-angle-down")[0].style.visibility = 'visible';
+    } else {
+        document.getElementsByClassName("box_footer")[0].style.display = 'none';
+        document.getElementsByClassName("fa-angle-down")[0].style.visibility = 'hidden';
+    }
 }
 
 const main = () => {
