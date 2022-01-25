@@ -6,13 +6,14 @@ function deleteElement(i) {
     render();
 }
 
-function checkElement(ind) {
+function checkElement(element, ind) {
+    if (element.checked == true) {
+        element.checked = false;
+    } else {
+        element.checked = true;
+    }
+
     console.log(todos);
-    console.log(document.getElementById("checkbox" + ind));
-    document.getElementById("checkbox" + ind).click();
-    console.log(document.getElementById("checkbox" + ind));
-    // e.classList.add('round label:after');
-    render();
 }
 
 const render = () => {
@@ -23,24 +24,37 @@ const render = () => {
         let list_element = document.createElement('div')
         list_element.classList.add('list_element')
 
+        
 
-        let checkbox = document.createElement('div')
-        checkbox.classList.add('round')
+        let round = document.createElement('div');
+        round.classList.add('round');
+        round.id = 'round' + ind;
+
+        let checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.id = "checkbox" + ind;
+
+        var label = document.createElement('label');
+        label.htmlFor = "checkbox" + ind;
+
+        round.appendChild(checkbox);
+        round.appendChild(label);
+
         checkbox.addEventListener('click', function() {
-            if (element.checked == true)
-                element.checked = false;
-            else
-                element.checked = true;
-            checkElement(ind);
+            checkElement(element, ind);
         });
-        checkbox.innerHTML = `<input type="checkbox" unchecked id="checkbox` + ind + `" />
-        <label for="checkbox` + ind + `"></label>`
+  
         
 
         let element_of_list = document.createElement('div')
         element_of_list.classList.add('element_of_list')
-        element_of_list.innerHTML = element["text"]
+        // if (element.checked == false) {
+            element_of_list.innerHTML = element["text"];
+        // } else {
+        //     element_of_list.innerHTML = element["text"].strike();
+        // }
         
+
 
         let button = document.createElement('div')
         button.classList.add('xButton')
@@ -50,12 +64,18 @@ const render = () => {
         button.innerHTML = `<i class="fa fa-times fa-2x" aria-hidden="true"></i>`
 
 
-        list_element.appendChild(checkbox)
+        list_element.appendChild(round)
         list_element.appendChild(element_of_list)
         list_element.appendChild(button)
 
 
         elementsContainer.appendChild(list_element)
+
+
+
+        if (element.checked == true) {
+            document.getElementById("checkbox" + ind).checked = 1;
+        }
     });
 
     let nrOfItems = document.getElementById("itemsLeft");
