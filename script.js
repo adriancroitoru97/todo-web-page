@@ -1,6 +1,17 @@
 let todos = []
 let elementsContainer = document.getElementById('elementsContainer')
 
+function leftItems() {
+    var items = 0;
+    for (var j = 0; j < todos.length; j++) {
+        if (todos[j].checked == false) {
+            items++;
+        }
+    }
+
+    return items;
+}
+
 function deleteElement(i) {
     todos.splice(i, 1);
     render();
@@ -81,18 +92,18 @@ const render = () => {
 
 
 
-
-    var leftItems = 0;
-    for (var j = 0; j < todos.length; j++) {
-        if (todos[j].checked == false) {
-            leftItems++;
-        }
-    }
     let nrOfItems = document.getElementById("itemsLeft");
-    if (leftItems == 1) {
-        nrOfItems.innerHTML = leftItems + " item left";
+    if (leftItems() == 1) {
+        nrOfItems.innerHTML = leftItems() + " item left";
     } else {
-        nrOfItems.innerHTML = leftItems + " items left";
+        nrOfItems.innerHTML = leftItems() + " items left";
+    }
+
+
+    if (leftItems() == todos.length) {
+        document.getElementsByClassName("clear_completed")[0].style.visibility = 'hidden';
+    } else {
+        document.getElementsByClassName("clear_completed")[0].style.visibility = 'visible';
     }
 }
 
@@ -116,11 +127,32 @@ const main = () => {
         }
     });
 
-    // document.querySelector(".fa-angle-down").addEventListener('click', function() {
-    //     alert("DA");
+    document.querySelector(".fa-angle-down").addEventListener('click', function() {
+        // alert("DA");
 
-    //     if ()
-    // });
+        if (leftItems() == 0) {
+            todos.forEach((element, ind) => {
+                element.checked = false;
+                document.getElementById("checkbox" + ind).checked = 0;
+            });
+        } else {
+            todos.forEach((element, ind) => {
+                element.checked = true;
+                document.getElementById("checkbox" + ind).checked = 1;
+            });
+        }
+
+        render();
+    });
+
+    document.querySelector(".clear_completed").addEventListener('click', function() {
+        for (var i = 0; i < todos.length; i++) {
+            if (todos[i].checked == true) {
+                deleteElement(i);
+                i--;
+            }
+        }
+    });
 }
 
 main()

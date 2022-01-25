@@ -242,6 +242,8 @@ input:placeholder-shown {
 	outline: inherit;
 
   font-size: 2vh;
+
+  visibility: hidden;
 }
 
 .clear_completed:hover {
