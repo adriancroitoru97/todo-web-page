@@ -24,7 +24,6 @@ function checkElement(element, ind) {
         element.checked = true;
     }
 
-    console.log(todos);
     render();
 }
 
@@ -33,66 +32,70 @@ const render = () => {
     elementsContainer.innerHTML =''
 
     todos.forEach((element, ind) => {
-        let list_element = document.createElement('div')
-        list_element.classList.add('list_element')
+        if (element.seenable == true) {
 
-        
+            let list_element = document.createElement('div')
+            list_element.classList.add('list_element')
 
-        let round = document.createElement('div');
-        round.classList.add('round');
-        round.id = 'round' + ind;
+            
 
-        let checkbox = document.createElement('input');
-        checkbox.type = "checkbox";
-        checkbox.id = "checkbox" + ind;
+            let round = document.createElement('div');
+            round.classList.add('round');
+            round.id = 'round' + ind;
 
-        var label = document.createElement('label');
-        label.htmlFor = "checkbox" + ind;
+            let checkbox = document.createElement('input');
+            checkbox.type = "checkbox";
+            checkbox.id = "checkbox" + ind;
 
-        round.appendChild(checkbox);
-        round.appendChild(label);
+            var label = document.createElement('label');
+            label.htmlFor = "checkbox" + ind;
 
-        checkbox.addEventListener('click', function() {
-            checkElement(element, ind);
-        });
-  
-        
+            round.appendChild(checkbox);
+            round.appendChild(label);
 
-        let element_of_list = document.createElement('div')
-        element_of_list.classList.add('element_of_list')
-        if (element.checked == false) {
-            element_of_list.innerHTML = element["text"];
-        } else {
-            element_of_list.innerHTML = element["text"].strike();
-        }
-        
+            checkbox.addEventListener('click', function() {
+                checkElement(element, ind);
+            });
+    
+            
 
-
-        let button = document.createElement('div')
-        button.classList.add('xButton')
-        button.addEventListener('click', function() {
-            deleteElement(ind);
-        });
-        list_element.addEventListener('mouseover', function() {
-            button.style.visibility = 'visible';
-        });
-        list_element.addEventListener('mouseout', function() {
-            button.style.visibility = 'hidden';
-        });
-        button.innerHTML = `<i class="fa fa-times fa-2x" aria-hidden="true"></i>`;
+            let element_of_list = document.createElement('div')
+            element_of_list.classList.add('element_of_list')
+            if (element.checked == false) {
+                element_of_list.innerHTML = element["text"];
+            } else {
+                element_of_list.innerHTML = element["text"].strike();
+                element_of_list.style.color = '#D9D9D9';
+            }
+            
 
 
-
-        list_element.appendChild(round)
-        list_element.appendChild(element_of_list)
-        list_element.appendChild(button)
-
-        elementsContainer.appendChild(list_element)
+            let button = document.createElement('div')
+            button.classList.add('xButton')
+            button.addEventListener('click', function() {
+                deleteElement(ind);
+            });
+            list_element.addEventListener('mouseover', function() {
+                button.style.visibility = 'visible';
+            });
+            list_element.addEventListener('mouseout', function() {
+                button.style.visibility = 'hidden';
+            });
+            button.innerHTML = `<i class="fa fa-times fa-2x" aria-hidden="true"></i>`;
 
 
 
-        if (element.checked == true) {
-            document.getElementById("checkbox" + ind).checked = 1;
+            list_element.appendChild(round)
+            list_element.appendChild(element_of_list)
+            list_element.appendChild(button)
+
+            elementsContainer.appendChild(list_element)
+
+
+
+            if (element.checked == true) {
+                document.getElementById("checkbox" + ind).checked = 1;
+            }
         }
     });
 
@@ -119,54 +122,113 @@ const render = () => {
         document.getElementsByClassName("box_footer")[0].style.display = 'none';
         document.getElementsByClassName("fa-angle-down")[0].style.visibility = 'hidden';
     }
+    
 }
 
-const main = () => {
-    document.querySelector(".inputBox").addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            var inputText = document.getElementById("myInput").value
-            if (inputText.length > 0)
-                {
-                    let todo = {
-                        id: todos.length,
-                        text: inputText,
-                        checked: false
+    const main = () => {
+        document.querySelector(".inputBox").addEventListener('keypress', function (e) {
+
+            if (e.key === 'Enter') {
+                var inputText = document.getElementById("myInput").value
+                if (inputText.length > 0 && inputText.trim().length)
+                    {
+                        let todo = {
+                            id: todos.length,
+                            text: inputText,
+                            checked: false,
+                            seenable: true
+                        }
+        
+                        todos.push(todo);
+                        render();
+        
+                        document.getElementById("myInput").value = "";
                     }
-    
-                    todos.push(todo);
-                    render();
-    
-                    document.getElementById("myInput").value = "";
-                }
-        }
-    });
-
-    document.querySelector(".fa-angle-down").addEventListener('click', function() {
-        // alert("DA");
-
-        if (leftItems() == 0) {
-            todos.forEach((element, ind) => {
-                element.checked = false;
-                document.getElementById("checkbox" + ind).checked = 0;
-            });
-        } else {
-            todos.forEach((element, ind) => {
-                element.checked = true;
-                document.getElementById("checkbox" + ind).checked = 1;
-            });
-        }
-
-        render();
-    });
-
-    document.querySelector(".clear_completed").addEventListener('click', function() {
-        for (var i = 0; i < todos.length; i++) {
-            if (todos[i].checked == true) {
-                deleteElement(i);
-                i--;
             }
-        }
-    });
+        });
+
+        document.querySelector(".fa-angle-down").addEventListener('click', function() {
+        
+            if (leftItems() == 0) {
+                todos.forEach((element, ind) => {
+                    element.checked = false;
+                    document.getElementById("checkbox" + ind).checked = 0;
+                });
+            } else {
+                todos.forEach((element, ind) => {
+                    element.checked = true;
+                    document.getElementById("checkbox" + ind).checked = 1;
+                });
+            }
+
+            render();
+        });
+
+        document.querySelector(".clear_completed").addEventListener('click', function() {
+
+            for (var i = 0; i < todos.length; i++) {
+                if (todos[i].checked == true) {
+                    deleteElement(i);
+                    i--;
+                }
+            }
+        });
+
+
+
+        document.getElementById("fAll").addEventListener('click', function() {
+
+            document.getElementById("fAll").classList.add("selected");
+            document.getElementById("fActive").classList.remove("selected");
+            document.getElementById("fCompleted").classList.remove("selected");
+
+            for (var i = 0; i < todos.length; i++) {
+                todos[i].seenable = true;
+            }
+
+            // console.log(todos);
+
+            render();
+        });
+
+        document.getElementById("fActive").addEventListener('click', function() {
+
+            document.getElementById("fAll").classList.remove("selected");
+            document.getElementById("fActive").classList.add("selected");
+            document.getElementById("fCompleted").classList.remove("selected");
+
+            for (var i = 0; i < todos.length; i++) {
+                if (todos[i].checked == true) {
+                    todos[i].seenable = false;
+                } else {
+                    todos[i].seenable = true;
+                }
+            }
+
+            // console.log(todos);
+
+            render();
+        });
+
+        document.getElementById("fCompleted").addEventListener('click', function() {
+
+            document.getElementById("fAll").classList.remove("selected");
+            document.getElementById("fActive").classList.remove("selected");
+            document.getElementById("fCompleted").classList.add("selected");
+
+            for (var i = 0; i < todos.length; i++) {
+                if (todos[i].checked == true) {
+                    todos[i].seenable = true;
+                } else {
+                    todos[i].seenable = false;
+                }
+            }
+
+            // console.log(todos);
+
+            render();
+        });
+
 }
 
 main()
